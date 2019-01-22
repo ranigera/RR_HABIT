@@ -30,13 +30,13 @@ source (file.path(utilities_path, 'normalizeVariablesQuestionnaires.R'))
 # ----------------------------------------- QUESTIONNAIRES ------------------------------------------
 
 # get questionnaiores databases
-Q.CALTECH1 <- read.delim(file.path(home_path,'DATABASES/CALTECH_V1_QUESTIONNARIES.txt'), header = T, sep ='') # read in dataset
+Q.CALTECH1 <- read.delim(file.path(home_path,'DATABASES','CALTECH_V1_QUESTIONNARIES.txt'), header = T, sep ='') # read in dataset
 Q.CALTECH1 <- normalizeVariablesQuestionnaires(Q.CALTECH1) # we need to normalize for each center individually
-Q.HAMBURG  <- read.delim(file.path(home_path,'DATABASES/HAMBURG_QUESTIONNARIES.txt'), header = T, sep ='')    # read in dataset
+Q.HAMBURG  <- read.delim(file.path(home_path,'DATABASES','HAMBURG_QUESTIONNARIES.txt'), header = T, sep ='')    # read in dataset
 Q.HAMBURG  <- normalizeVariablesQuestionnaires(Q.HAMBURG) # we need to normalize for each center individually
-Q.TELAVIV  <- read.delim(file.path(home_path,'DATABASES/TELAVIV_QUESTIONNARIES.txt'), header = T, sep ='')    # read in dataset
+Q.TELAVIV  <- read.delim(file.path(home_path,'DATABASES','TELAVIV_QUESTIONNARIES.txt'), header = T, sep ='')    # read in dataset
 Q.TELAVIV  <- normalizeVariablesQuestionnaires(Q.TELAVIV) # we need to normalize for each center individually
-Q.CALTECH2 <- read.delim(file.path(home_path,'DATABASES/CALTECH_V2_QUESTIONNARIES.txt'), header = T, sep ='') # read in dataset
+Q.CALTECH2 <- read.delim(file.path(home_path,'DATABASES','CALTECH_V2_QUESTIONNARIES.txt'), header = T, sep ='') # read in dataset
 Q.CALTECH2 <- normalizeVariablesQuestionnaires(Q.CALTECH2) # we need to normalize for each center individually
 
 tmp1 = join (Q.CALTECH1, Q.HAMBURG, type = "full")
@@ -49,15 +49,15 @@ QUESTIONNAIRES <- subset (QUESTIONNAIRES, !ID == '330' & !ID == '200' & !ID == '
 #####################################################################################################
 # ----------------------------------------- FREE OPERANT TASK ---------------------------------------
 
-P.CALTECH1 <- read.delim(file.path(home_path,'DATABASES/CALTECH_V1.txt'), header = T, sep ='') # read in dataset
+P.CALTECH1 <- read.delim(file.path(home_path,'DATABASES','CALTECH_V1.txt'), header = T, sep ='') # read in dataset
 P.CALTECH1 <- normalizeVariablesBehavior(P.CALTECH1) # we need to normalize for each center individually
-P.HAMBURG  <- read.delim(file.path(home_path,'DATABASES/HAMBURG.txt'), header = T, sep ='') # read in dataset
+P.HAMBURG  <- read.delim(file.path(home_path,'DATABASES','HAMBURG.txt'), header = T, sep ='') # read in dataset
 P.HAMBURG  <- normalizeVariablesBehavior(P.HAMBURG) # we need to normalize for each center individually
-P.TELAVIV  <- read.delim(file.path(home_path,'DATABASES/TELAVIV.txt'), header = T, sep ='') # read in dataset
+P.TELAVIV  <- read.delim(file.path(home_path,'DATABASES','TELAVIV.txt'), header = T, sep ='') # read in dataset
 P.TELAVIV  <- normalizeVariablesBehavior(P.TELAVIV) # we need to normalize for each center individually
-P.CALTECH2 <- read.delim(file.path(home_path,'DATABASES/CALTECH_V2.txt'), header = T, sep ='') # read in dataset
+P.CALTECH2 <- read.delim(file.path(home_path,'DATABASES','CALTECH_V2.txt'), header = T, sep ='') # read in dataset
 P.CALTECH2 <- normalizeVariablesBehavior(P.CALTECH2) # we need to normalize for each center individually
-P.SYDNEY   <- read.delim(file.path(home_path,'DATABASES/SYDNEY.txt'), header = T, sep ='') # read in dataset
+P.SYDNEY   <- read.delim(file.path(home_path,'DATABASES','SYDNEY.txt'), header = T, sep ='') # read in dataset
 P.SYDNEY   <- normalizeVariablesBehavior(P.SYDNEY ) # we need to normalize for each center individually
 
 tmp1 = join (P.CALTECH1, P.HAMBURG, type = "full")
@@ -73,4 +73,4 @@ FREEOPERANT <- subset (FREEOPERANT,!ID == '299'  & !ID == '334' & !ID == '341' &
 FULL   <- join (QUESTIONNAIRES, FREEOPERANT, type = "full")
 
 # print database
-write.table(FULL,file.path(home_path,'DATABASES/PILOT_DATABASE.txt'),sep="\t",row.names=FALSE)
+write.table(FULL,file.path(home_path,'DATABASES','PILOT_DATABASE.txt'),sep="\t",row.names=FALSE)
