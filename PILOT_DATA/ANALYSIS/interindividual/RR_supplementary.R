@@ -4,7 +4,6 @@
 # trait anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
 
 ## Last modified by Eva on NOVEMBER 2018
-## Verified by ??
 ####################################################################################################
 
 #----------------------------------    PRELIMINARY STUFF     --------------------------------------
