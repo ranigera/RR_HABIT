@@ -1,0 +1,5 @@
+load("/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA/ANALYSIS/powerAnalysis/powerInteraction.RDATA")
+load("/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA/ANALYSIS/powerAnalysis/powerInteractionCurve.RDATA")
+load("/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA/ANALYSIS/powerAnalysis/powerSigleSlope.RDATA")
+load("/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA/ANALYSIS/powerAnalysis/powerSigleSlopeCurveß.RDATA")
+load("/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA/ANALYSIS/powerAnalysis/powerSigleSlope.RDATA")

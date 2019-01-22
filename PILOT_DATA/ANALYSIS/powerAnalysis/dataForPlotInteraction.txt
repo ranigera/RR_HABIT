@@ -1,0 +1,14 @@
+Power for model comparison, (95% confidence interval),
+by number of levels in ID:
+      3  0.00 0.00  0.74 - 54 rows
+     58 35.80 31.59 40.18 - 1044 rows
+    113 51.40 46.92 55.86 - 1958 rows
+    169 61.20 56.77 65.49 - 2818 rows
+    224 74.20 70.13 77.98 - 3808 rows
+    279 87.20 83.95 90.00 - 4798 rows
+    334 91.00 88.14 93.36 - 5664 rows
+    390 94.40 92.01 96.25 - 6572 rows
+    445 96.20 94.13 97.70 - 7562 rows
+    500 97.60 95.85 98.75 - 8552 rows
+
+Time elapsed: 21 h 43 m 53 s
