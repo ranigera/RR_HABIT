@@ -1,7 +1,7 @@
 ####################################################################################################
-# R code for the PILOT DATA of: 
-# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of 
-# trait anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
+# R code for the PILOT DATA of:
+# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of
+#  anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
 
 ## Last modified by Eva on NOVEMBER 2018
 ## Verified by Rani Gera
@@ -16,7 +16,7 @@ if(!require(pacman)) {
   install.packages("pacman")
   library(pacman)
 }
-pacman::p_load(car, lme4, lmerTest, pbkrtest, ggplot2, dplyr, plyr, tidyr, multcomp, mvoutlier, HH, doBy, psych, pastecs, reshape, reshape2, 
+pacman::p_load(car, lme4, lmerTest, pbkrtest, ggplot2, dplyr, plyr, tidyr, multcomp, mvoutlier, HH, doBy, psych, pastecs, reshape, reshape2,
                jtools, effects, compute.es, DescTools, MBESS, afex, ez, metafor, influence.ME, GPArotation)
 
 require(lattice)
@@ -75,7 +75,7 @@ CHANGE <- ddply(CHANGE, .(ID,prepost), countTrialxCondition)
 
 # ----------------------------------------- EFFECTS OF OVER-TRAINING ON DEVALUATION SENSITIVITY -----------------------------------------
 
-# get total number of participants included 
+# get total number of participants included
 count(CHANGE$ID) # note that Caltech2 used a slightly different protocol so there are less repeat per condition
 
 # subset by site
@@ -95,24 +95,24 @@ summary(aov(hunger ~ group*prepost + Error (ID/prepost), data = C.SYDNEY))
 summary(aov(hunger ~ group*prepost + Error (ID/prepost), data = C.TELAVIV))
 
 # liking ratings
-summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH)) 
-summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH2)) 
+summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH))
+summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH2))
 summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.HAMBURG))
-summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.SYDNEY)) 
-summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.TELAVIV)) 
+summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.SYDNEY))
+summary(aov(normLiking ~ group*cue*prepost + Error (ID/cue*prepost), data = C.TELAVIV))
 
 ############################################### outcome devaluation induced changes
 
-# ------------------------  CALTECH1 
+# ------------------------  CALTECH1
 C.CALTECH = subset(CHANGE, site == 'Caltech1')
-CALTECH.index <- getChangeIndex(C.CALTECH)# aggregate based on pre-post 
+CALTECH.index <- getChangeIndex(C.CALTECH)# aggregate based on pre-post
 
 int.caltech = ezANOVA(CALTECH.index, dv = pressFreq, wid = ID, within = .(cue), between = group, type = 3, detailed = T, return_aov = T) # quick check because aov uses a type 1 anova
 summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH))
 
-# ------------------------  CALTECH2 
+# ------------------------  CALTECH2
 C.CALTECH2 = subset(CHANGE, site == 'Caltech2')
-CALTECH2.index <- getChangeIndex(C.CALTECH2)# aggregate based on pre-post 
+CALTECH2.index <- getChangeIndex(C.CALTECH2)# aggregate based on pre-post
 
 int.caltech2 = ezANOVA(CALTECH2.index, dv = pressFreq, wid = ID, within = .(cue), between = group, type = 3, detailed = T, return_aov = T) # quick check because aov uses a type 1 anova
 summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C.CALTECH2))
@@ -120,7 +120,7 @@ summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C
 
 # ------------------------  HAMBURG
 C.HAMBURG = subset(CHANGE, site == 'Hamburg')
-HAMBURG.index <- getChangeIndex(C.HAMBURG)# aggregate based on pre-post 
+HAMBURG.index <- getChangeIndex(C.HAMBURG)# aggregate based on pre-post
 
 int.hamburg = ezANOVA(HAMBURG.index, dv = pressFreq, wid = ID, within = .(cue), between = group, type = 3, detailed = T, return_aov = T) # quick check because aov uses a type 1 anova
 summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C.HAMBURG))
@@ -128,7 +128,7 @@ summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C
 
 # ------------------------  SYDNEY
 C.SYDNEY = subset(CHANGE, site == 'Sydney')
-SYDNEY.index <- getChangeIndex(C.SYDNEY)# aggregate based on pre-post 
+SYDNEY.index <- getChangeIndex(C.SYDNEY)# aggregate based on pre-post
 
 int.sydeny = ezANOVA(SYDNEY.index, dv = pressFreq, wid = ID, within = .(cue), between = group, type = 3, detailed = T, return_aov = T) # quick check because aov uses a type 1 anova
 summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C.SYDNEY))
@@ -136,7 +136,7 @@ summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C
 
 # ------------------------  TELAVIV
 C.TELAVIV = subset(CHANGE, site == 'Tel_Aviv')
-TELAVIV.index <- getChangeIndex(C.TELAVIV)# aggregate based on pre-post 
+TELAVIV.index <- getChangeIndex(C.TELAVIV)# aggregate based on pre-post
 
 int.telaviv = ezANOVA(TELAVIV.index, dv = pressFreq, wid = ID, within = .(cue), between = group, type = 3, detailed = T, return_aov = T) # quick check because aov uses a type 1 anova
 summary(aov(normPressFreq ~ group*cue*prepost + Error (ID/cue*prepost), data = C.TELAVIV))
@@ -157,7 +157,7 @@ SYDNEY.index2 <- subset(SYDNEY.index2, cue!='Devalued')
 TELAVIV.index2 <- ddply(TELAVIV.index, .(ID), transform, pressFreq = pressFreq-pressFreq[cue=="Devalued"])
 TELAVIV.index2 <- subset(TELAVIV.index2, cue!='Devalued')
 
-# get the mean and the std 
+# get the mean and the std
 estimate.caltech = summaryBy(pressFreq ~ group, data = CALTECH.index2,
                              FUN = function(x) { c(m = mean(x), s = sd(x)) } )
 
@@ -216,7 +216,7 @@ dev.print(pdf, file.path(figures_path,'S_Figure_forest.pdf'))
 dev.off()
 
 
-# ---------------------  LINEAR MIXED MODEL 
+# ---------------------  LINEAR MIXED MODEL
 change.inter = lmer(normPressFreq ~ group*cue*prepost + site + itemxcondition + (cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 change.simple = lmer(normPressFreq ~ (group+cue+prepost)^2 + site + itemxcondition + (cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
@@ -245,7 +245,7 @@ ggplot(bg_b, aes(itemxcondition, fill = cue, color = cue)) +
     title = '',
     x = 'Trial',
     y = "Normalised pressing"
-  ) 
+  )
 
 # ----- assumptions check
 plot(fitted(change.inter),residuals(change.inter)) # note heteroscedastisity and the impact of the 0 values
@@ -253,7 +253,7 @@ qqnorm(residuals(change.inter))
 hist(residuals(change.inter))
 
 # ---------------------- FIGURE 2
-# plot distribution of effect of interest to see how the 0 responses affected our tageted effect: 
+# plot distribution of effect of interest to see how the 0 responses affected our tageted effect:
 bg_b = ddply(CHANGE,.(ID,group),summarise,normChangeBehav=mean(normChangeBehav))
 
 behav =data.frame(bg_b$normChangeBehav)
@@ -271,7 +271,7 @@ pp <- ggplot(behav, aes(Normscore, fill = group)) +
     title = '',
     x = 'Normalized Change in Behavior',
     y = "Density"
-  ) 
+  )
 
 ppp <-  pp + theme_linedraw(base_size = 14, base_family = "Helvetica")+
   theme(strip.text.x = element_text(size = 18, face = "bold"),
@@ -281,7 +281,7 @@ ppp <-  pp + theme_linedraw(base_size = 14, base_family = "Helvetica")+
         legend.text = element_text(size = 14),
         axis.ticks.x=element_blank(),
         axis.title.x = element_text(size = 18, face = "bold"),
-        axis.title.y = element_text(size = 18, face = "bold"))  
+        axis.title.y = element_text(size = 18, face = "bold"))
 
 pdf(file.path(figures_path,'Figure_histograms.pdf'))
 print(ppp)
@@ -289,7 +289,7 @@ dev.off()
 
 # ----------------------------------------- THE ROLE OF INTERINDIVIDUAL DIFFERENCES -----------------------------------------
 
-# -------------------------------------------------------- STAI 
+# -------------------------------------------------------- STAI
 change.stai  = lmer(normPressFreq~ group*cue*prepost*ANXIETY + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 change.basic = lmer(normPressFreq ~ (group+cue+prepost+ANXIETY)^3 + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 anova(change.stai, change.basic)
@@ -308,7 +308,7 @@ sslop.pSD = lmer(normPressFreq~ group*cue*prepost*ANX_pSD + itemxcondition + sit
 anova(sslop.pSD)
 
 # complete model
-mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_pSD  + 
+mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_pSD  +
                      group:cue+ group:prepost + group:ANX_pSD +
                      cue:prepost+cue:ANX_pSD+prepost:ANX_pSD+
                      group:cue:prepost + group:cue:ANX_pSD + group:prepost:ANX_pSD +
@@ -316,7 +316,7 @@ mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_pSD  +
                      itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
 # model without the 3-way interaction of interest
-mdl.simple = lmer(normPressFreq~ group + cue + prepost + ANX_pSD  + 
+mdl.simple = lmer(normPressFreq~ group + cue + prepost + ANX_pSD  +
                     group:cue+ group:prepost + group:ANX_pSD +
                     cue:prepost+cue:ANX_pSD+prepost:ANX_pSD -
                     group:cue:prepost + group:cue:ANX_pSD + group:prepost:ANX_pSD +
@@ -332,7 +332,7 @@ sslop.mSD = lmer(normPressFreq ~ group*cue*prepost*ANX_mSD + itemxcondition + si
 anova(sslop.mSD)
 
 # complete model
-mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_mSD  + 
+mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_mSD  +
                      group:cue+ group:prepost + group:ANX_mSD +
                      cue:prepost+cue:ANX_mSD+prepost:ANX_mSD+
                      group:cue:prepost + group:cue:ANX_mSD + group:prepost:ANX_mSD +
@@ -340,7 +340,7 @@ mdl.complex = lmer(normPressFreq~ group + cue + prepost + ANX_mSD  +
                      itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
 # model without the 3-way interaction of interest
-mdl.simple = lmer(normPressFreq~ group + cue + prepost + ANX_mSD  + 
+mdl.simple = lmer(normPressFreq~ group + cue + prepost + ANX_mSD  +
                     group:cue+ group:prepost + group:ANX_mSD +
                     cue:prepost+cue:ANX_mSD+prepost:ANX_mSD -
                     group:cue:prepost + group:cue:ANX_mSD + group:prepost:ANX_mSD +
@@ -410,7 +410,7 @@ sslop.pSD = lmer(normPressFreq~ group*cue*prepost*STRESS_pSD + itemxcondition + 
 CHANGE$STRESS_mSD <- scale(CHANGE$TICS_CSSS, scale = T) - 1 # here I'm going to test at - 1SD (so people that are high on stress)
 sslop.mSD = lmer(normPressFreq~ group*cue*prepost*STRESS_mSD + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
-# -------------------------------------------------------- BIS 
+# -------------------------------------------------------- BIS
 change.inter = lmer(normPressFreq~ group*cue*prepost*BIS_total + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 change.basic = lmer(normPressFreq ~ (group+cue+prepost+BIS_total)^3 + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
@@ -420,12 +420,12 @@ anova(change.inter, change.basic)
 #------------------------ EXTRACT COMPONENTS
 
 # Check if questionnaire data are correlated between them
-questionnaires <- aggregate(ANXIETY ~   BIS_total* TICS_CSSS, 
+questionnaires <- aggregate(ANXIETY ~   BIS_total* TICS_CSSS,
                             data = CHANGE, FUN = mean, na.action = na.pass)
 r.questionnaires= cor(questionnaires, use = "pairwise.complete.obs")
 
 # prepare database for the PCA
-Q_ACP.means.ID <- aggregate(ANXIETY ~ ID * TICS_SOOV * TICS_PREPE * TICS_WODI * TICS_EXWO * TICS_LACK * TICS_SOTE * TICS_SOIS * TICS_WORY * TICS_WOOV * BIS_motor * BIS_attentional * BIS_nonplanning, 
+Q_ACP.means.ID <- aggregate(ANXIETY ~ ID * TICS_SOOV * TICS_PREPE * TICS_WODI * TICS_EXWO * TICS_LACK * TICS_SOTE * TICS_SOIS * TICS_WORY * TICS_WOOV * BIS_motor * BIS_attentional * BIS_nonplanning,
                             data = CHANGE, FUN = mean, na.action = na.pass) # we do not include the total scales
 Q_ACP.means <- Q_ACP.means.ID
 Q_ACP.means$ID <- NULL
@@ -440,7 +440,7 @@ describe (Q_ACP.means)
 pairs.panels(na.omit(Q_ACP.means))
 
 # determine the number of factors
-fa.parallel(Q_ACP.means) 
+fa.parallel(Q_ACP.means)
 
 # apply PCA with varimax rotation
 quest.1.pca <- psych::principal(Q_ACP.means, rotate="varimax", nfactors=4, scores=TRUE) # "none", "varimax" (Default), "quatimax", "promax", "oblimin", "simplimax", and "cluster"
@@ -456,7 +456,7 @@ dev.off()
 #------------------------ USE COMPONENTS AS PREDICTORS
 
 # extract the components
-axes <- predict(quest.1.pca, Q_ACP.means, Q_ACP.means)   
+axes <- predict(quest.1.pca, Q_ACP.means, Q_ACP.means)
 # combine it with the participants ID
 dat <- cbind(Q_ACP.means.ID, axes)
 
@@ -471,7 +471,7 @@ PCA_CHANGE <- join (CHANGE,dat, type = "full")
 
 # run model
 change.inter = lmer(normPressFreq~ group*cue*prepost*(RC1+RC2+RC3+RC4) + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = PCA_CHANGE, REML=FALSE)
-anova(change.inter) 
+anova(change.inter)
 
 # ----- assumptions check
 plot(fitted(change.inter),residuals(change.inter)) # show this to ben
@@ -516,4 +516,3 @@ extreamGroupData.means$traitGroup = mapvalues(extreamGroupData.means$traitGroup,
 
 # makeIndividualDiffPlot(PCA_CHANGE.means, PCA_CHANGE.means$RC1,'Work Pressure', '','Figure_workPressure.pdf', figures_path)
 makeSplitGroupPlot(extreamGroupData.means,'Work Pressure Groups', 'S_Figure_PCAworkLoad.pdf', figures_path)
-

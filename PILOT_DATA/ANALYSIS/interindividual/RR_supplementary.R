@@ -1,7 +1,7 @@
 ####################################################################################################
-# R code for the supplementary analysis of the PILOT DATA 
-# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of 
-# trait anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
+# R code for the supplementary analysis of the PILOT DATA
+# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of
+# anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
 
 ## Last modified by Eva on NOVEMBER 2018
 ####################################################################################################
@@ -12,7 +12,7 @@ if(!require(pacman)) {
   install.packages("pacman")
   library(pacman)
 }
-pacman::p_load(car, lme4, lmerTest, pbkrtest, ggplot2, dplyr, plyr, tidyr, multcomp, mvoutlier, HH, doBy, psych, pastecs, reshape, reshape2, 
+pacman::p_load(car, lme4, lmerTest, pbkrtest, ggplot2, dplyr, plyr, tidyr, multcomp, mvoutlier, HH, doBy, psych, pastecs, reshape, reshape2,
                jtools, effects, compute.es, DescTools, MBESS, afex, ez, metafor, influence.ME, olsrr)
 
 require(lattice)
@@ -82,7 +82,7 @@ ggplot(behav, aes(Normscore, fill = group)) +
     title = '',
     x = 'Normalized Change in Behavior',
     y = "Density"
-  ) 
+  )
 
 ggplot(behav, aes(x = group, y = Normscore, fill = group, color = group)) +
   geom_point() +
@@ -92,7 +92,7 @@ ggplot(behav, aes(x = group, y = Normscore, fill = group, color = group)) +
     title = '',
     x = 'Normalized Change in Behavior',
     y = "Density"
-  ) 
+  )
 
 # assess the influence of the outlyer on the data
 change.inter = lmer(normPressFreq ~  cue*prepost*group  + (cue*prepost|ID) + (1|trial), data = CHANGE, REML=FALSE)
@@ -120,5 +120,3 @@ iqr_all     = IQR(bg_b$normChangeBehav)
 
 thrashold1  = mean_all+(3*sd_all) #2.910910901
 threshhold2 = median_all+(3*iqr_all)
-
-

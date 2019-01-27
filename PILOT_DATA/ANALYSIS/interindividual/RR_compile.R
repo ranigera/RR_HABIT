@@ -1,7 +1,7 @@
 ####################################################################################################
-# R code to compile database for PILOT DATA 
-# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of 
-# trait anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
+# R code to compile database for PILOT DATA
+# "Does anxiety moderate training duration effects on habits in humans?  Determining the effects of
+# anxiety on the experimental induction of habits in an instrumental outcome devaluation task"
 
 ## Last modified by Eva on NOVEMBER 2018
 ## Verified by Rani Gera on DECEMBER 2018
@@ -13,7 +13,7 @@ if(!require(pacman)) {
 install.packages("pacman")
 library(pacman)
 }
-pacman::p_load( ggplot2, dplyr, plyr, tidyr, pastecs, reshape, reshape2 
+pacman::p_load( ggplot2, dplyr, plyr, tidyr, pastecs, reshape, reshape2
                )
 
 # Set path
@@ -65,7 +65,7 @@ tmp2 = join (tmp1, P.CALTECH2, type = "full")
 tmp3 = join (tmp2, P.TELAVIV, type = 'full')
 FREEOPERANT =  join (tmp3, P.SYDNEY, type = "full")
 # remove participant based on pre-reg criteria
-FREEOPERANT <- subset (FREEOPERANT,!ID == '234') # caltech 2 extream 
+FREEOPERANT <- subset (FREEOPERANT,!ID == '234') # caltech 2 extream
 FREEOPERANT <- subset (FREEOPERANT,!ID == '299'  & !ID == '334' & !ID == '341' & !ID == '310' & !ID == '304' & !ID == '322' & !ID == '326' & !ID == '352' & !ID == '356' & !ID == '360' & !ID == '301') # automated exclusions in Telaviv
 
 
