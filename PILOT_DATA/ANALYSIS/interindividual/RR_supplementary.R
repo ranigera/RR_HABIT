@@ -18,7 +18,9 @@ pacman::p_load(car, lme4, lmerTest, pbkrtest, ggplot2, dplyr, plyr, tidyr, multc
 require(lattice)
 
 # Set path
-home_path       <- '/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA'
+full_path       <- dirname(rstudioapi::getActiveDocumentContext()$path)
+pos             <- regexpr("PILOT_DATA", full_path)
+home_path       <- substr(full_path, 1, pos+9)
 utilities_path  <- file.path(home_path,'ANALYSIS','interindividual','R')
 setwd (home_path)
 

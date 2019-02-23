@@ -23,7 +23,9 @@ require(lattice)
 
 
 # Set path
-home_path       <- '/Users/evapool/Documents/my_github/TASK_HABITS/RR/PILOT_DATA' # this will need to be made non-specific at the end (source the)
+full_path       <- dirname(rstudioapi::getActiveDocumentContext()$path)
+pos             <- regexpr("PILOT_DATA", full_path)
+home_path       <- substr(full_path, 1, pos+9)
 figures_path    <- file.path(home_path,'ANALYSIS','interindividual', 'figures')
 utilities_path  <- file.path(home_path,'ANALYSIS','interindividual','R')
 setwd (home_path)
@@ -293,6 +295,9 @@ dev.off()
 change.stai  = lmer(normPressFreq~ group*cue*prepost*ANXIETY + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 change.basic = lmer(normPressFreq ~ (group+cue+prepost+ANXIETY)^3 + itemxcondition + site + (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 anova(change.stai, change.basic)
+
+# delete this once you are sure this is fine
+change.robust = lmer(normPressFreq ~  group*cue*prepost*ANXIETY+ I(ANXIETY^2)*group*cue*prepost + itemxcondition + site+ (1+cue*prepost+itemxcondition|ID), data = CHANGE, REML=FALSE)
 
 # ----- assumptions check
 plot(fitted(change.stai),residuals(change.stai)) # note heteroscedastisity and the impact of the 0 values
